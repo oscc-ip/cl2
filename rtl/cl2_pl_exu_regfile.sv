@@ -22,6 +22,13 @@ module cl2_pl_exu_regfile (
       assign s_regfile_val[i] = '0;
     end else begin : REGFILE_NO0_GEN_BLOCK
       assign s_regfile_wen[i] = wd_wen_i & (wd_idx_i == i);
+      cc_dffer u_regfile_cc_dffer (
+          clk_i,
+          rst_n_i,
+          s_regfile_wen[i],
+          wd_dat_i[i],
+          s_regfile_val[i]
+      );
     end
   end
 
