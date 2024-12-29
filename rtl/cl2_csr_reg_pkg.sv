@@ -1,10 +1,4 @@
 package cl2_csr_reg_pkg;
-
-  // Address widths within the block
-  parameter int BlockAw = 6;
-
-
-  // Typedefs for registers //
   typedef struct packed {
     logic       sd;
     logic       rsv_30_23;
@@ -105,11 +99,20 @@ package cl2_csr_reg_pkg;
     logic       a;
   } cl2_csr_misa_reg_t;
 
+  typedef struct packed {
+    logic mcycle_run;
+    logic minstret_run;
+    logic mtime_run;
+  } cl2_csr_perfcnt_reg_t;
+
   typedef struct packed {logic [31:0] mtvec;} cl2_csr_mtvec_reg_t;
   typedef struct packed {logic [31:0] mscratch;} cl2_csr_mscratch_reg_t;
   typedef struct packed {logic [31:0] mepc;} cl2_csr_mepc_reg_t;
+  typedef struct packed {logic [31:0] mcycle;} cl2_csr_mcycle_reg_t;
+  typedef struct packed {logic [31:0] mcycleh;} cl2_csr_mcycleh_reg_t;
+  typedef struct packed {logic [31:0] minstret;} cl2_csr_minstret_reg_t;
+  typedef struct packed {logic [31:0] minstreth;} cl2_csr_minstreth_reg_t;
   typedef struct packed {logic [31:0] mcause;} cl2_csr_mcause_reg_t;
   typedef struct packed {logic [31:0] mtval;} cl2_csr_mtval_reg_t;
-
 
 endpackage
