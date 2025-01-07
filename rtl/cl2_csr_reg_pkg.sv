@@ -23,7 +23,6 @@ package cl2_csr_reg_pkg;
     logic       uie;
   } cl2_csr_mstatus_reg_t;
 
-
   typedef struct packed {
     logic [31:30] mxl;
     logic [29:26] rsv_29_26;
