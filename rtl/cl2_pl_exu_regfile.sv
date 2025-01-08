@@ -8,9 +8,9 @@ module cl2_pl_exu_regfile (
     output logic [         `CL2_XLEN-1:0] rs1_dat_o,
     input  logic [`CL2_REGFILE_WIDTH-1:0] rs2_idx_i,
     output logic [         `CL2_XLEN-1:0] rs2_dat_o,
-    input  logic                          wd_wen_i,
-    input  logic [`CL2_REGFILE_WIDTH-1:0] wd_idx_i,
-    input  logic [         `CL2_XLEN-1:0] wd_dat_i
+    input  logic                          rd_wen_i,
+    input  logic [`CL2_REGFILE_WIDTH-1:0] rd_wr_idx_i,
+    input  logic [         `CL2_XLEN-1:0] rd_wr_dat_i
 );
 
   logic [       `CL2_XLEN-1:0] r_regfile_val [`CL2_REGFILE_NUM-1:0];
@@ -21,12 +21,12 @@ module cl2_pl_exu_regfile (
       assign s_regfile_wen[i] = '0;
       assign r_regfile_val[i] = '0;
     end else begin : REGFILE_NO0_GEN_BLOCK
-      assign s_regfile_wen[i] = wd_wen_i & (wd_idx_i == i);
+      assign s_regfile_wen[i] = rd_wen_i & (rd_wr_idx_i == i);
       cc_dffer u_regfile_cc_dffer (
           clk_i,
           rst_n_i,
           s_regfile_wen[i],
-          wd_dat_i[i],
+          rd_wr_dat_i[i],
           r_regfile_val[i]
       );
     end
